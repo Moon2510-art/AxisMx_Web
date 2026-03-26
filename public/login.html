@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>AxisMX | Sistema de Control de Accesos</title>
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-animation">
+        <div class="gradient-bg"></div>
+        <div class="particles"></div>
+    </div>
+    
+    <div class="container">
+        <div class="login-wrapper">
+            <div class="login-left">
+                <div class="brand-container">
+                    <div class="logo-container">
+                        <div class="logo-icon">
+                            <img src="assets/logo2.png" width="90" height="90">
+                        </div>
+                        <h1 class="brand-name">Axis<span class="brand-accent">MX</span></h1>
+                    </div>
+                    <p class="brand-tagline">Sistema Integral de Control de Accesos Inteligentes</p>
+                    <div class="brand-features">
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Control de acceso seguro</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Monitoreo en tiempo real</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-robot"></i>
+                            <span>Tecnología inteligente</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stats-container">
+                    <div class="stat">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Disponibilidad</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Seguro</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="login-right">
+                <div class="login-card">
+                    <div class="card-header">
+                        <h2>Iniciar Sesión</h2>
+                        <p>Ingresa tus credenciales para acceder al sistema</p>
+                    </div>
+                    
+                    <form id="loginForm" class="login-form" novalidate>
+                        <div class="input-group">
+                            <div class="input-icon">
+                                <i class="fas fa-id-card"></i>
+                            </div>
+                            <div class="input-field">
+                                <label for="email_or_employee">Matrícula o Número de Empleado</label>
+                                <input type="text" id="email_or_employee" name="email_or_employee" 
+                                       placeholder="Ej. 124000111 o EMP001" autocomplete="username" required>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <div class="input-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="input-field">
+                                <label for="password">Contraseña</label>
+                                <div class="password-wrapper">
+                                    <input type="password" id="password" name="password" 
+                                           placeholder="Ingresa tu contraseña" autocomplete="current-password" required>
+                                    <button type="button" class="toggle-password" onclick="togglePassword()">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="remember" name="remember">
+                                <span class="checkmark"></span>
+                                <span class="checkbox-label">Recordarme</span>
+                            </label>
+                            <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
+                        </div>
+                        
+                        <button type="submit" class="login-btn" id="loginBtn">
+                            <span class="btn-text">Iniciar Sesión</span>
+                            <span class="btn-loader" style="display: none;">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </span>
+                        </button>
+                        
+                        <div id="message-container" class="message-container"></div>
+                    </form>
+                    
+                    <div class="card-footer">
+                        <div class="security-badge">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Conexión segura</span>
+                        </div>
+                        <div class="support-link">
+                            <i class="fas fa-headset"></i>
+                            <a href="#">¿Necesitas ayuda? Contacta a soporte</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    <p>© <span id="year"></span> AxisMX - Todos los derechos reservados</p>
+                    <p class="version">v1.0.0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="./js/login.js"></script>
+</body>
+</html>

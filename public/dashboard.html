@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | AxisMX</title>
+
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <img src="/assets/logo2.png" alt="AxisMX logo" width="180" class="top-centered-image" onerror="this.style.display='none'">
+        <h2 class="logo">AxisMX</h2>
+
+        <nav>
+            <a class="active">Dashboard</a>
+            <a href="registro.html">Registros de Acceso</a>
+            <a href="usuarios.html">Usuarios</a>
+            <a href="roles.html">Roles</a>
+            <a href="tiposAcceso.html">Tipos de Acceso</a>
+            <a href="visitantes.html">Visitantes</a>
+            <a href="vehiculos.html">Vehículos</a>
+        </nav>
+    </aside>
+
+    <main class="main">
+
+        <header class="header">
+            <h1>Dashboard</h1>
+
+            <div class="user" id="userCard">
+                <img src="/assets/user.png" width="40" height="40">
+            <div>
+            <strong id="userName">Admin</strong>
+            <span id="userRole">...</span>
+            </div>
+        </div>
+        </header>
+
+        <section class="stats">
+
+            <div class="card">
+                <h3>Usuarios</h3>
+                <p id="usersCount">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Vehículos</h3>
+                <p id="vehiclesCount">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Accesos hoy</h3>
+                <p id="accessToday">0</p>
+            </div>
+
+        </section>
+    
+        <section class="charts">
+
+            <div class="chart-card">
+                <h3>Accesos por día</h3>
+                <div id="accessChart"></div>
+            </div>
+
+            <div class="chart-card">
+                <h3>Tipos de acceso</h3>
+                <div id="typeChart"></div>
+            </div>
+
+        </section>
+
+        <section class="activity">
+            <h2>Accesos recientes</h2>
+            <div id="activityList" class="activity-list"></div>
+        </section>
+
+    </main>
+
+</div>
+
+<script src="/js/dashboard.js"></script>
+
+</body>
+</html>

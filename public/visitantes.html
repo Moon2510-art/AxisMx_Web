@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Visitantes | AxisMX</title>
+      <link rel="stylesheet" href="./css/dashboard.css" />
+   </head>
+   <body>
+      <div class="layout">
+         <aside class="sidebar">
+            <img src="/assets/logo2.png" alt="AxisMX logo" width="200" height="200" class="top-centered-image" onerror="this.style.display='none'">
+            <h2 class="logo">AxisMX</h2>
+            <nav>
+               <a href="dashboard.html">Dashboard</a>
+               <a href="registro.html">Registros de Acceso</a>
+               <a href="usuarios.html">Usuarios</a>
+               <a href="roles.html">Roles</a>
+               <a href="tipoAcceso.html">Métodos de Acceso</a>
+               <a class="active">Visitantes</a>
+               <a href="vehiculos.html">Vehiculos</a>
+            </nav>
+         </aside>
+         <main class="main">
+            <header class="header">
+               <h1>Visitantes</h1>
+               <div class="user">
+                  <img src="/assets/user.jpg" width="50" height="50">
+                  <div>
+                     <strong>Test User</strong>
+                     <span>Admin</span>
+                  </div>
+               </div>
+            </header>
+            <section class="filter-bar">
+               <input type="text" placeholder="Buscar visitante o compañía..." class="search">
+               <select>
+                  <option>Tipo de Acceso</option>
+                  <option>QR</option>
+                  <option>RFID</option>
+                  <option>Placa</option>
+               </select>
+               <button class="btn">Buscar</button>
+               <button class="btn add">+ Nuevo Visitante</button>
+            </section>
+            <section class="table-section">
+               <table>
+                  <thead>
+                     <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Compañía</th>
+                        <th>Tipo de Acceso</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>1</td>
+                        <td>Pedro Ramírez</td>
+                        <td>Proveedor Tech</td>
+                        <td><span class="tag qr">QR</span></td>
+                        <td>Visita técnica</td>
+                        <td class="actions">
+                           <button class="edit">Editar</button>
+                           <button class="delete">Eliminar</button>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>2</td>
+                        <td>Laura Mendoza</td>
+                        <td>Empresa Limpieza SA</td>
+                        <td><span class="tag rfid">RFID</span></td>
+                        <td>Servicio de limpieza semanal</td>
+                        <td class="actions">
+                           <button class="edit">Editar</button>
+                           <button class="delete">Eliminar</button>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>3</td>
+                        <td>José Hernández</td>
+                        <td>Distribuidora Norte</td>
+                        <td><span class="tag plate">Placa</span></td>
+                        <td>Entrega de mercancía</td>
+                        <td class="actions">
+                           <button class="edit">Editar</button>
+                           <button class="delete">Eliminar</button>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>4</td>
+                        <td>Ana Torres</td>
+                        <td>Universidad Invitada</td>
+                        <td><span class="tag qr">QR</span></td>
+                        <td>Conferencia invitada</td>
+                        <td class="actions">
+                           <button class="edit">Editar</button>
+                           <button class="delete">Eliminar</button>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+         </main>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Tipos de acceso | AxisMX</title>
+      <link rel="stylesheet" href="./css/dashboard.css" />
+   </head>
+   <body>
+      <div class="layout">
+         <aside class="sidebar">
+            <img src="/assets/logo2.png" alt="AxisMX logo" width="200" height="200" class="top-centered-image" onerror="this.style.display='none'">
+            <h2 class="logo">AxisMX</h2>
+            <nav>
+               <a href="dashboard.html">Dashboard</a>
+               <a href="registro.html">Registros de Acceso</a>
+               <a href="usuarios.html">Usuarios</a>
+               <a href="roles.html">Roles</a>
+               <a class="active">Métodos de Acceso</a>
+               <a href="visitantes.html">Visitantes</a>
+               <a href="vehiculos.html">Vehiculos</a>
+            </nav>
+         </aside>
+         <main class="main">
+            <header class="header">
+               <h1>Métodos de Acceso</h1>
+               <div class="user">
+                  <img src="/assets/user.jpg" width="50" height="50">
+                  <div>
+                     <strong>Test User</strong>
+                     <span>Admin</span>
+                  </div>
+               </div>
+            </header>
+            <section class="filter-bar">
+               <input type="text" placeholder="Buscar usuario, tag o descripción..." class="search">
+               <select>
+                  <option>Tipo</option>
+                  <option>RFID</option>
+                  <option>QR</option>
+                  <option>Placa</option>
+               </select>
+               <select>
+                  <option>Estatus</option>
+                  <option>Activo</option>
+                  <option>Inactivo</option>
+               </select>
+               <button class="btn">Buscar</button>
+               <button class="btn add">+ Nuevo Acceso</button>
+            </section>
+            <section class="table-section">
+               <table>
+                  <thead>
+                     <tr>
+                        <th>ID</th>
+                        <th>Tipo</th>
+                        <th>Usuario</th>
+                        <th>Tag</th>
+                        <th>Descripción</th>
+                        <th>Estatus</th>
+                        <th>Acciones</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>1</td>
+                        <td><span class="tag rfid">RFID</span></td>
+                        <td>Juan García</td>
+                        <td>A-00125</td>
+                        <td>Tarjeta principal</td>
+                        <td><span class="status active">Activo</span></td>
+                        <td class="actions">
+                           <button class="edit">Editar</button>
+                           <button class="delete">Eliminar</button>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>2</td>
+                        <td><span class="tag qr">QR</span></td>
+                        <td>María López</td>
+                        <td>Q-00205</td>
+                        <td>Acceso temporal visitante</td>
+                        <td><span class="status active">Activo</span></td>
+                        <td class="actions">
+                           <button class="edit">Editar</button>
+                           <button class="delete">Eliminar</button>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>3</td>
+                        <td><span class="tag plate">Placa</span></td>
+                        <td>Carlos Pérez</td>
+                        <td>ABC-123</td>
+                        <td>Vehículo personal</td>
+                        <td><span class="status inactive">Inactivo</span></td>
+                        <td class="actions">
+                           <button class="edit">Editar</button>
+                           <button class="delete">Eliminar</button>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>4</td>
+                        <td><span class="tag rfid">RFID</span></td>
+                        <td>Ana Martínez</td>
+                        <td>A-00452</td>
+                        <td>Acceso laboratorio</td>
+                        <td><span class="status active">Activo</span></td>
+                        <td class="actions">
+                           <button class="edit">Editar</button>
+                           <button class="delete">Eliminar</button>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+         </main>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Usuarios | AxisMX</title>
+      <link rel="stylesheet" href="./css/dashboard.css" />
+   </head>
+
+   <body>
+      <div class="layout">
+         <aside class="sidebar">
+            <img src="/assets/logo2.png" alt="AxisMX logo" width="200" height="200" class="top-centered-image" onerror="this.style.display='none'">
+            <h2 class="logo">AxisMX</h2>
+            <nav>
+               <a href="dashboard.html">Dashboard</a>
+               <a href="registro.html">Registros de Acceso</a>
+               <a class="active">Usuarios</a>
+               <a href="roles.html">Roles</a>
+               <a href="tiposAcceso.html">Tipos de Acceso</a>
+               <a href="visitantes.html">Visitantes</a>
+               <a href="vehiculos.html">Vehiculos</a>
+            </nav>
+         </aside>
+         <main class="main">
+            <header class="header">
+               <h1>Usuarios</h1>
+               <div class="user">
+                  <img src="/assets/user.jpg" width="50" height="50">
+                  <div>
+                     <strong>Test User</strong>
+                     <span>Admin</span>
+                  </div>
+               </div>
+            </header>
+            <section class="filter-bar">
+               <input type="text" placeholder="Buscar por nombre, matrícula o email..." class="search">
+               <select>
+                  <option>Empresa</option>
+                  <option>AxisMX</option>
+                  <option>Visitante</option>
+               </select>
+               <select>
+                  <option>Estado</option>
+                  <option>Activo</option>
+                  <option>Inactivo</option>
+               </select>
+               <button class="btn">Buscar</button>
+               <button class="btn add">+ Nuevo Usuario</button>
+            </section>
+            <section class="table-section">
+               <table>
+                  <thead>
+                     <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Matrícula</th>
+                        <th>N° Empleado</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Empresa</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>1</td>
+                        <td>Juan García</td>
+                        <td>124049777</td>
+                        <td>DEV2024001</td>
+                        <td>juan@axis.mx</td>
+                        <td>4421234567</td>
+                        <td>AxisMX</td>
+                        <td><span class="status active">Activo</span></td>
+                        <td class="actions">
+                           <button class="edit">Editar</button>
+                           <button class="delete">Eliminar</button>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>2</td>
+                        <td>María López</td>
+                        <td>124049888</td>
+                        <td>DEV2024002</td>
+                        <td>maria@axis.mx</td>
+                        <td>4422222222</td>
+                        <td>AxisMX</td>
+                        <td><span class="status active">Activo</span></td>
+                        <td class="actions">
+                           <button class="edit">Editar</button>
+                           <button class="delete">Eliminar</button>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>3</td>
+                        <td>Carlos Pérez</td>
+                        <td>124049999</td>
+                        <td>DEV2024003</td>
+                        <td>carlos@axis.mx</td>
+                        <td>4423333333</td>
+                        <td>AxisMX</td>
+                        <td><span class="status inactive">Inactivo</span></td>
+                        <td class="actions">
+                           <button class="edit">Editar</button>
+                           <button class="delete">Eliminar</button>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+         </main>
+      </div>
+   </body>
+</html>

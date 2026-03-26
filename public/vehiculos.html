@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Vehiculos | AxisMX</title>
+      <link rel="stylesheet" href="./css/dashboard.css" />
+   </head>
+   <body>
+      <div class="layout">
+         <aside class="sidebar">
+            <img src="/assets/logo2.png" alt="AxisMX logo" width="200" height="200" class="top-centered-image" onerror="this.style.display='none'">
+            <h2 class="logo">AxisMX</h2>
+            <nav>
+               <a href="dashboard.html">Dashboard</a>
+               <a href="registro.html">Registros de Acceso</a>
+               <a href="usuarios.html">Usuarios</a>
+               <a href="roles.html">Roles</a>
+               <a href="tipoAcceso.html">Métodos de Acceso</a>
+               <a href="visitantes.html">Visitantes</a>
+               <a class="active">Vehículos</a>
+            </nav>
+         </aside>
+         <main class="main">
+            <header class="header">
+               <h1>Vehículos</h1>
+               <div class="user">
+                  <img src="/assets/user.jpg" width="50" height="50">
+                  <div>
+                     <strong>Test User</strong>
+                     <span>Admin</span>
+                  </div>
+               </div>
+            </header>
+            <section class="filter-bar">
+               <input type="text" placeholder="Buscar por placa, modelo o propietario..." class="search">
+               <select>
+                  <option>Estado</option>
+                  <option>Activo</option>
+                  <option>Inactivo</option>
+               </select>
+               <button class="btn">Buscar</button>
+               <button class="btn add">+ Nuevo Vehículo</button>
+            </section>
+            <section class="table-section">
+               <table>
+                  <thead>
+                     <tr>
+                        <th>ID</th>
+                        <th>Modelo</th>
+                        <th>Placa</th>
+                        <th>Propietario</th>
+                        <th>Descripción</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>1</td>
+                        <td>Toyota Corolla</td>
+                        <td>ABC-123</td>
+                        <td>Juan García</td>
+                        <td>Vehículo personal</td>
+                        <td><span class="status active">Activo</span></td>
+                        <td class="actions">
+                           <button class="edit">Editar</button>
+                           <button class="delete">Eliminar</button>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>2</td>
+                        <td>Nissan Versa</td>
+                        <td>XYZ-456</td>
+                        <td>María López</td>
+                        <td>Vehículo administrativo</td>
+                        <td><span class="status active">Activo</span></td>
+                        <td class="actions">
+                           <button class="edit">Editar</button>
+                           <button class="delete">Eliminar</button>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>3</td>
+                        <td>Chevrolet Aveo</td>
+                        <td>QWE-789</td>
+                        <td>Carlos Pérez</td>
+                        <td>Vehículo visitante</td>
+                        <td><span class="status inactive">Inactivo</span></td>
+                        <td class="actions">
+                           <button class="edit">Editar</button>
+                           <button class="delete">Eliminar</button>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>4</td>
+                        <td>Ford Transit</td>
+                        <td>BUS-204</td>
+                        <td>Transporte Escolar</td>
+                        <td>Autobús institucional</td>
+                        <td><span class="status active">Activo</span></td>
+                        <td class="actions">
+                           <button class="edit">Editar</button>
+                           <button class="delete">Eliminar</button>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+         </main>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil | AxisMX</title>
+    <link rel="stylesheet" href="./css/dashboard.css">
+</head>
+
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <img src="/assets/logo2.png" alt="AxisMX logo" width="180" class="top-centered-image" onerror="this.style.display='none'">
+        <h2 class="logo">AxisMX</h2>
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="registro.html">Registros de Acceso</a>
+            <a href="usuarios.html">Usuarios</a>
+            <a href="roles.html">Roles</a>
+            <a href="tiposAcceso.html">Tipos de Acceso</a>
+            <a href="visitantes.html">Visitantes</a>
+            <a href="vehiculos.html">Vehículos</a>
+        </nav>
+    </aside>
+
+<main class="main">
+
+        <header class="header">
+            <h1>Mi Perfil</h1>
+        </header>
+
+        <section class="profile-grid">
+
+            <div class="profile-card">
+
+                <img src="/assets/user.png" class="avatar-large">
+
+                <h2 id="name">Nombre</h2>
+                <span id="role" class="role-text"></span>
+
+                <div class="progress-box">
+                    <div class="progress-bar">
+                        <div class="progress" id="profileProgress"></div>
+                    </div>
+                </div>
+
+                <div class="quick-info">
+                    <p><strong>Email:</strong> <span id="email"></span></p>
+                    <p><strong>Teléfono:</strong> <span id="phone"></span></p>
+                    <p><strong>Empresa:</strong> <span id="company"></span></p>
+                </div>
+
+            </div>
+
+            <div class="profile-details">
+
+                <div class="detail-card">
+                    <h3>Información General</h3>
+
+                    <div class="detail-row">
+                        <span>Matrícula</span>
+                        <span id="matricula"></span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>No. Empleado</span>
+                        <span id="employee"></span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>Rol</span>
+                        <span id="roleDetail"></span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>Estado</span>
+                        <span id="status" class="status-badge"></span>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <h3>Cuenta</h3>
+
+                    <div class="detail-row">
+                        <span>Email</span>
+                        <span id="emailDetail"></span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>Teléfono</span>
+                        <span id="phoneDetail"></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="/js/user.js"></script>
+</body>
+</html>
