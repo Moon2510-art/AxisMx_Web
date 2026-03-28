@@ -1,115 +1,263 @@
 <!DOCTYPE html>
 <html lang="es">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Usuarios | AxisMX</title>
-      <link rel="stylesheet" href="./css/dashboard.css" />
-   </head>
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Usuarios | AxisMX</title>
+   <link rel="stylesheet" href="./css/dashboard.css" />
+</head>
 
-   <body>
-      <div class="layout">
-         <aside class="sidebar">
-            <img src="/assets/logo2.png" alt="AxisMX logo" width="200" height="200" class="top-centered-image" onerror="this.style.display='none'">
-            <h2 class="logo">AxisMX</h2>
-            <nav>
-               <a href="dashboard.html">Dashboard</a>
-               <a href="registro.html">Registros de Acceso</a>
-               <a class="active">Usuarios</a>
-               <a href="roles.html">Roles</a>
-               <a href="tiposAcceso.html">Tipos de Acceso</a>
-               <a href="visitantes.html">Visitantes</a>
-               <a href="vehiculos.html">Vehiculos</a>
-            </nav>
-         </aside>
-         <main class="main">
-            <header class="header">
-               <h1>Usuarios</h1>
-               <div class="user">
-                  <img src="/assets/user.jpg" width="50" height="50">
-                  <div>
-                     <strong>Test User</strong>
-                     <span>Admin</span>
-                  </div>
-               </div>
-            </header>
-            <section class="filter-bar">
-               <input type="text" placeholder="Buscar por nombre, matrícula o email..." class="search">
-               <select>
-                  <option>Empresa</option>
-                  <option>AxisMX</option>
-                  <option>Visitante</option>
-               </select>
-               <select>
-                  <option>Estado</option>
-                  <option>Activo</option>
-                  <option>Inactivo</option>
-               </select>
-               <button class="btn">Buscar</button>
-               <button class="btn add">+ Nuevo Usuario</button>
-            </section>
-            <section class="table-section">
-               <table>
-                  <thead>
-                     <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Matrícula</th>
-                        <th>N° Empleado</th>
-                        <th>Email</th>
-                        <th>Teléfono</th>
-                        <th>Empresa</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <tr>
-                        <td>1</td>
-                        <td>Juan García</td>
-                        <td>124049777</td>
-                        <td>DEV2024001</td>
-                        <td>juan@axis.mx</td>
-                        <td>4421234567</td>
-                        <td>AxisMX</td>
-                        <td><span class="status active">Activo</span></td>
-                        <td class="actions">
-                           <button class="edit">Editar</button>
-                           <button class="delete">Eliminar</button>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td>2</td>
-                        <td>María López</td>
-                        <td>124049888</td>
-                        <td>DEV2024002</td>
-                        <td>maria@axis.mx</td>
-                        <td>4422222222</td>
-                        <td>AxisMX</td>
-                        <td><span class="status active">Activo</span></td>
-                        <td class="actions">
-                           <button class="edit">Editar</button>
-                           <button class="delete">Eliminar</button>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td>3</td>
-                        <td>Carlos Pérez</td>
-                        <td>124049999</td>
-                        <td>DEV2024003</td>
-                        <td>carlos@axis.mx</td>
-                        <td>4423333333</td>
-                        <td>AxisMX</td>
-                        <td><span class="status inactive">Inactivo</span></td>
-                        <td class="actions">
-                           <button class="edit">Editar</button>
-                           <button class="delete">Eliminar</button>
-                        </td>
-                     </tr>
-                  </tbody>
-               </table>
-            </section>
-         </main>
+<body>
+
+<div class="layout">
+
+   <aside class="sidebar">
+      <img src="/assets/logo2.png" width="180" class="top-centered-image">
+      <h2 class="logo">AxisMX</h2>
+
+      <nav>
+         <a href="dashboard.html">Dashboard</a>
+         <a href="registro.html">Bitácora de Acceso</a>
+         <a class="active">Usuarios</a>
+         <a href="roles.html">Roles</a>
+         <a href="visitantes.html">Visitantes</a>
+         <a href="vehiculos.html">Vehiculos</a>
+      </nav>
+   </aside>
+
+   <main class="main">
+
+      <header class="header">
+            <h1>Usuarios</h1>
+            <div class="user" id="userCard">
+                <img src="/assets/user.png" width="40" height="40">
+            <div>
+            <strong id="userName">Admin</strong>
+            <span id="userRole">...</span>
+            </div>
+        </div>
+        </header>
+
+      <section class="filter-bar">
+
+         <input id="search"
+                type="text"
+                placeholder="Buscar por nombre, matrícula o email..."
+                class="search">
+
+         <select id="empresa">
+            <option value="">Empresa</option>
+            <option value="AxisMX">AxisMX</option>
+            <option value="Visitante">Visitante</option>
+         </select>
+
+         <select id="estado">
+            <option value="">Estado</option>
+            <option value="Activo">Activo</option>
+            <option value="Inactivo">Inactivo</option>
+         </select>
+
+         <button class="btn add" onclick="createUser()">
+            + Nuevo Usuario
+         </button>
+
+      </section>
+
+      <section class="table-section">
+         
+            <table>
+               <thead>
+                  <tr>
+                     <th>ID</th>
+                     <th>Nombre</th>
+                     <th>Matrícula</th>
+                     <th>N° Empleado</th>
+                     <th>Email</th>
+                     <th>Teléfono</th>
+                     <th>Empresa</th>
+                     <th>Rol</th>
+                     <th>Estado</th>
+                     <th>Acciones</th>
+                  </tr>
+               </thead>
+
+               <tbody id="tableBody">
+                  <tr>
+                     <td colspan="9">Cargando usuarios...</td>
+                  </tr>
+               </tbody>
+
+            </table>
+
+      </section>
+
+   </main>
+
+</div>
+
+<div id="userModal" class="modal">
+   <div class="modal-content">
+
+      <div class="modal-header">
+         <h3>Nuevo Usuario</h3>
+         <span class="close" onclick="closeUserModal()">✖</span>
       </div>
-   </body>
+
+      <div class="modal-body form-grid">
+
+   <div class="form-group">
+      <label>Nombre</label>
+      <input id="nombre" placeholder="Nombre">
+   </div>
+
+   <div class="form-group">
+      <label>Apellido Paterno</label>
+      <input id="ap_paterno" placeholder="Apellido paterno">
+   </div>
+
+   <div class="form-group">
+      <label>Apellido Materno</label>
+      <input id="ap_materno" placeholder="Apellido materno (opcional)">
+   </div>
+
+   <div class="form-group">
+      <label>Email</label>
+      <input id="email" type="email" placeholder="correo@ejemplo.com">
+   </div>
+
+   <div class="form-group">
+      <label>Teléfono</label>
+      <input id="telefono" placeholder="Opcional">
+   </div>
+
+   <div class="form-group">
+      <label>Matrícula</label>
+      <input id="matricula" placeholder="Opcional">
+   </div>
+
+   <div class="form-group">
+      <label>N° Empleado</label>
+      <input id="numero_empleado" placeholder="Opcional">
+   </div>
+
+   <div class="form-group">
+      <label>Empresa</label>
+      <input id="empresaInput" placeholder="Opcional">
+   </div>
+
+   <div class="form-group">
+   <label>Rol</label>
+   <select id="rol">
+      <option value="">Seleccionar rol</option>
+      <option value="1">Alumno</option>
+      <option value="2">Maestro</option>
+      <option value="3">Administrativo</option> 
+      <option value="4">Seguridad</option>
+      <option value="5">Empleado_Oxxo</option>
+      <option value="6">Empleado_KFeteria</option>
+      <option value="7">Empleado_Salud</option>
+      <option value="8">Empleado_Limpieza</option>
+      <option value="9">Empleado_Mantenimiento</option>
+      <option value="11">Conductor</option>
+   </select>
+</div>
+
+   <div class="form-group full">
+      <label>Contraseña</label>
+      <input id="password" type="password" placeholder="Mínimo 6 caracteres">
+   </div>
+
+   <div class="modal-footer">
+         <button class="btn cancel" onclick="closeUserModal()">Cancelar</button>
+         <button class="btn" onclick="saveUser()">Guardar</button>
+      </div>
+
+      </div> 
+
+   </div> 
+
+   </div> 
+</div> 
+
+<div id="editUserModal" class="modal">
+   <div class="modal-content">
+
+      <div class="modal-header">
+         <h3>Editar Usuario</h3>
+         <span class="close" onclick="closeEditModal()">✖</span>
+      </div>
+
+      <div class="modal-body form-grid">
+
+         <input type="hidden" id="edit_id">
+
+         <div class="form-group">
+            <label>Nombre</label>
+            <input id="edit_nombre">
+         </div>
+
+         <div class="form-group">
+            <label>Apellido Paterno</label>
+            <input id="edit_ap_paterno">
+         </div>
+
+         <div class="form-group">
+            <label>Apellido Materno</label>
+            <input id="edit_ap_materno">
+         </div>
+
+         <div class="form-group">
+            <label>Email</label>
+            <input id="edit_email">
+         </div>
+
+         <div class="form-group">
+            <label>Teléfono</label>
+            <input id="edit_telefono">
+         </div>
+
+         <div class="form-group">
+            <label>Matrícula</label>
+            <input id="edit_matricula">
+         </div>
+
+         <div class="form-group">
+            <label>N° Empleado</label>
+            <input id="edit_numero_empleado">
+         </div>
+
+         <div class="form-group">
+            <label>Empresa</label>
+            <input id="edit_empresa">
+         </div>
+
+         <div class="form-group">
+            <label>Rol</label>
+            <select id="edit_rol">
+               <option value="1">Alumno</option>
+               <option value="2">Maestro</option>
+               <option value="3">Administrativo</option>
+               <option value="4">Seguridad</option>
+               <option value="5">Empleado_Oxxo</option>
+               <option value="6">Empleado_KFeteria</option>
+               <option value="7">Empleado_Salud</option>
+               <option value="8">Empleado_Limpieza</option>
+               <option value="9">Empleado_Mantenimiento</option>
+               <option value="11">Conductor</option>
+            </select>
+         </div>
+
+      </div>
+
+      <div class="modal-footer">
+         <button class="btn cancel" onclick="closeEditModal()">Cancelar</button>
+         <button class="btn" onclick="updateUser()">Guardar Cambios</button>
+      </div>
+
+   </div>
+</div>
+
+   <script src="/js/usuarios.js"></script>
+
+</body>
 </html>

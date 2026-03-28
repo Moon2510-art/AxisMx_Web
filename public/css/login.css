@@ -530,7 +530,7 @@ body {
 
 .support-link {
     text-align: center;
-    font-size: 0.75rem;
+    font-size: 1rem;
 }
 
 .support-link i {
@@ -651,4 +651,29 @@ body {
 /* Smooth Transitions */
 * {
     transition: all 0.2s ease;
+}
+
+.visit-btn{
+    width:50%;
+    margin:10px auto 0 auto;
+    padding:6px 8px;
+    border-radius:8px;
+    border:2px solid rgba(59,130,246,.6);
+    background:rgba(59,130,246,.05);
+    color:#3b82f6;
+    font-size:0.85rem;
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+    cursor:pointer;
+    transition:all .2s ease;
+}
+
+.visit-btn:hover{
+    background:#3b82f6;
+    color:#fff;
+    transform:translateY(-1px);
+    box-shadow:0 4px 10px rgba(59,130,246,.2);
 }

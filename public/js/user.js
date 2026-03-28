@@ -1,7 +1,5 @@
 const API = "/api";
-const token = sessionStorage.getItem("auth_token") || localStorage.getItem("auth_token")
-
-document.addEventListener("DOMContentLoaded", init);
+const token = sessionStorage.getItem("auth_token") || localStorage.getItem("auth_token");
 
 function init() {
     if (!token) {
@@ -10,6 +8,11 @@ function init() {
     }
 
     loadUser();
+
+    window.addEventListener("click", (e) => {
+        const modal = document.getElementById("passwordModal");
+        if (e.target === modal) closePasswordModal();
+    });
 }
 
 async function loadUser() {
@@ -29,9 +32,7 @@ async function loadUser() {
         if (!res.ok) throw new Error("Error al cargar usuario");
 
         const json = await res.json();
-        const user = json.data;
-
-        renderUser(user);
+        renderUser(json.data);
 
     } catch (e) {
         console.error(e);
@@ -55,11 +56,13 @@ function renderUser(user) {
     setText("phoneDetail", user.phone);
 
     const statusEl = document.getElementById("status");
-    statusEl.textContent = user.status;
-    statusEl.className = "status-badge";
+    if (statusEl) {
+        statusEl.textContent = user.status;
+        statusEl.className = "status-badge";
 
-    if (user.status === "Activo") {
-        statusEl.classList.add("activo");
+        if (user.status === "Activo") {
+            statusEl.classList.add("activo");
+        }
     }
 
     let progress = 0;
@@ -69,10 +72,95 @@ function renderUser(user) {
     if (user.employee_number) progress += 20;
     if (user.company) progress += 20;
 
-    document.getElementById("profileProgress").style.width = progress + "%";
+    const bar = document.getElementById("profileProgress");
+    if (bar) bar.style.width = progress + "%";
 }
 
 function setText(id, value) {
     const el = document.getElementById(id);
     if (el) el.textContent = value || "-";
 }
+
+async function changePassword() {
+    const current = document.getElementById("currentPassword")?.value;
+    const newPass = document.getElementById("newPassword")?.value;
+    const confirm = document.getElementById("confirmPassword")?.value;
+
+    if (!current || !newPass || !confirm) {
+        alert("Completa todos los campos");
+        return;
+    }
+
+    if (newPass.length < 6) {
+        alert("La nueva contraseña debe tener al menos 6 caracteres");
+        return;
+    }
+
+    if (newPass !== confirm) {
+        alert("Las contraseñas no coinciden");
+        return;
+    }
+
+    try {
+        const res = await fetch(`${API}/auth/change-password`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`,
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                current_password: current,
+                new_password: newPass,
+                new_password_confirmation: confirm
+            })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok || !data.success) {
+            throw new Error(data.message || "Error al cambiar contraseña");
+        }
+
+        alert("Contraseña actualizada");
+
+        closePasswordModal();
+
+    } catch (err) {
+        alert(err.message);
+        console.error(err);
+    }
+}
+
+function openPasswordModal() {
+    document.getElementById("passwordModal")?.classList.add("show");
+}
+
+function closePasswordModal() {
+    document.getElementById("passwordModal")?.classList.remove("show");
+
+    ["currentPassword","newPassword","confirmPassword"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = "";
+    });
+}
+
+function logout() {
+    const token = sessionStorage.getItem("auth_token") || localStorage.getItem("auth_token");
+
+    if (token) {
+        fetch("/api/auth/logout", {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Accept": "application/json"
+            }
+        }).catch(() => {});
+    }
+
+    sessionStorage.clear();
+    localStorage.removeItem("auth_token");
+
+    window.location.href = "/login.html";
+}
+init();

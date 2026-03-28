@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agenda tu visita | AxisMX</title>
+
+<link rel="stylesheet" href="./css/login.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+</head>
+
+<body>
+
+<div class="background-animation">
+    <div class="gradient-bg"></div>
+    <div class="particles"></div>
+</div>
+
+<div class="container">
+    <div class="login-wrapper" style="max-width:500px; margin:auto; border-radius:2rem; overflow:hidden;">
+
+        <div class="login-right" style="padding:2rem;">
+            <div class="login-card" style="border-radius:1.5rem; overflow:hidden;">
+
+                <div class="card-header">
+                    <h2>Agenda tu visita</h2>
+                    <p>Completa tu información para generar tu acceso</p>
+                </div>
+
+                <form id="visitaForm" class="login-form">
+
+                    <div class="input-group">
+                        <div class="input-icon"><i class="fas fa-user"></i></div>
+                        <div class="input-field">
+                            <label>Nombre</label>
+                            <input type="text" placeholder="Ej. Juan Perez" id="nombre" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-icon"><i class="fas fa-building"></i></div>
+                        <div class="input-field">
+                            <label>Compañía</label>
+                            <input type="text" placeholder="Ej. Huawey (Opcional)" id="compania">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="input-field">
+                            <label>Email</label>
+                            <input type="email" placeholder="Ej. correo@mail.com" id="email" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-icon"><i class="fas fa-phone"></i></div>
+                        <div class="input-field">
+                            <label>Teléfono</label>
+                            <input type="text" placeholder="Ej. 4425584477" id="telefono" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="login-btn">
+                        Registrar visita
+                    </button>
+
+                    <button type="button" id="statusBtn" class="visit-btn">
+                        Estado visita
+                    </button>
+
+                </form>
+
+                <div id="statusSection" class="status-card" style="display:none; text-align:center; margin-top:1rem;">
+                    <h3 id="estadoText"></h3>
+                    <div id="qrContainer" style="display:flex; justify-content:center; margin:1rem 0;"></div>
+                    <p id="statusMessage"></p>
+                </div>
+
+                <div id="message" class="message-container"></div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal for "Estado visita" -->
+<div id="statusModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000; justify-content:center; align-items:center;">
+    <div class="login-card" style="background:white; max-width:400px; width:90%; padding:2rem; text-align:center; border-radius:1.5rem; overflow:hidden;">
+        <div class="card-header">
+            <h2>Consulta tu estado</h2>
+            <p>Ingresa tu email para ver el estado de tu visita</p>
+        </div>
+
+        <input type="email" id="modalEmail" placeholder="Ej. correo@mail.com" required style="margin:1rem 0; padding:0.75rem; border-radius:0.75rem; border:2px solid var(--border-light); width:100%; font-family:inherit;">
+
+        <button id="checkStatusBtn" class="login-btn" style="width:100%;">Consultar</button>
+        <button id="closeModalBtn" class="visit-btn" style="width:100%; margin-top:0.5rem;">Cerrar</button>
+
+        <div id="modalStatusSection" style="display:none; margin-top:1rem;">
+            <h4 id="modalEstadoText"></h4>
+            <div id="modalQrContainer" style="display:flex; justify-content:center; margin:1rem 0;"></div>
+            <p id="modalStatusMessage"></p>
+        </div>
+
+        <div id="modalMessage" class="message-container"></div>
+    </div>
+</div>
+
+<script src="./js/visita.js"></script>
+</body>
+</html>

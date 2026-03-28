@@ -4,110 +4,78 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Registros | AxisMX</title>
-      <link rel="stylesheet" href="./css/dashboard.css" />
+      <link rel="stylesheet" href="./css/dashboard.css">
    </head>
    <body>
       <div class="layout">
          <aside class="sidebar">
-            <img src="/assets/logo2.png" alt="AxisMX logo" width="200" height="200" class="top-centered-image" onerror="this.style.display='none'">
+            <img src="/assets/logo2.png" width="180" class="top-centered-image">
             <h2 class="logo">AxisMX</h2>
             <nav>
                <a href="dashboard.html">Dashboard</a>
-               <a class="active">Registros de Acceso</a>
+               <a class="active">Bitácora de Acceso</a>
                <a href="usuarios.html">Usuarios</a>
                <a href="roles.html">Roles</a>
-               <a href="tiposAcceso.html">Tipos de Acceso</a>
                <a href="visitantes.html">Visitantes</a>
-               <a href="vehiculos.html">Vehiculos</a>
+               <a href="vehiculos.html">Vehículos</a>
             </nav>
+
          </aside>
          <main class="main">
             <header class="header">
-               <h1>Registros de Acceso</h1>
-               <div class="user">
-                  <img src="/assets/user.jpg" width="50" height="50">
-                  <div>
-                     <strong>Test User</strong>
-                     <span>Admin</span>
-                  </div>
-               </div>
+               <h1>Bitácora de Acceso</h1>
+                     <button id="btnPDF">Exportar Pdf</button>
+                     <button id="btnExcel">Exportar Excel</button>
+               <div class="user" id="userCard">
+                <img src="/assets/user.png" width="40" height="40">
+            <div>
+            <strong id="userName">Admin</strong>
+            <span id="userRole">...</span>
+            </div>
+
             </header>
             <section class="filter-bar">
-               <input type="text" placeholder="Buscar usuario, credencial..." class="search">
-               <select>
-                  <option>Zona</option>
-                  <option>Entrada Principal</option>
-                  <option>Almacén</option>
-                  <option>Estacionamiento</option>
+               <input id="search" type="text" placeholder="Buscar usuario, credencial o placa" class="search">
+               <select id="tipo">
+                  <option value="">Tipo</option>
+                  <option value="QR">QR</option>
+                  <option value="Placa">Placa</option>
                </select>
-               <select>
-                  <option>Tipo</option>
-                  <option>OCR</option>
-                  <option>RFID</option>
-                  <option>Placa</option>
+               <select id="estado">
+                  <option value="">Estado</option>
+                  <option value="1">Permitido</option>
+                  <option value="0">Denegado</option>
                </select>
-               <select>
-                  <option>Estado</option>
-                  <option>Permitido</option>
-                  <option>Denegado</option>
-               </select>
-               <input type="date">
-               <button class="btn">Buscar</button>
+               <input id="fecha" type="date">
+
             </section>
             <section class="table-section">
+               <div class="pdfContent" id="pdfContent">
                <table>
                   <thead>
                      <tr>
                         <th>Fecha</th>
                         <th>Hora</th>
-                        <th>Usuario(s)</th>
-                        <th>Zona</th>
-                        <th>Credencial</th>
+                        <th>Usuario</th>
+                        <th>Credencial / Vehículo</th>
                         <th>Tipo</th>
                         <th>Estado</th>
                      </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="tableBody">
                      <tr>
-                        <td>08/03/2026</td>
-                        <td>12:45</td>
-                        <td>Pedro Sánchez</td>
-                        <td>Almacén</td>
-                        <td>Q-00205</td>
-                        <td><span class="tag qr">QR</span></td>
-                        <td class="fail">✖</td>
-                     </tr>
-                     <tr>
-                        <td>08/03/2026</td>
-                        <td>11:20</td>
-                        <td>María López</td>
-                        <td>Estacionamiento</td>
-                        <td>DEF-456</td>
-                        <td><span class="tag plate">Placa</span></td>
-                        <td class="ok">✔</td>
-                     </tr>
-                     <tr>
-                        <td>08/03/2026</td>
-                        <td>10:05</td>
-                        <td>María López</td>
-                        <td>Entrada Principal</td>
-                        <td>A-00125</td>
-                        <td><span class="tag rfid">RFID</span></td>
-                        <td class="ok">✔</td>
-                     </tr>
-                     <tr>
-                        <td>08/03/2026</td>
-                        <td>09:30</td>
-                        <td>Juan García</td>
-                        <td>Estacionamiento</td>
-                        <td>ABC-123</td>
-                        <td><span class="tag plate">Placa</span></td>
-                        <td class="ok">✔</td>
+                        <td colspan="6">Cargando...</td>
                      </tr>
                   </tbody>
                </table>
+               </div>
             </section>
          </main>
       </div>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style/dist/xlsx.bundle.js"></script>
+      <script src="/js/access.js"></script>
+
    </body>
 </html>

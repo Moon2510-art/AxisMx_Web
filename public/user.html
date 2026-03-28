@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Perfil | AxisMX</title>
-    <link rel="stylesheet" href="./css/dashboard.css">
+<meta charset="UTF-8">
+<title>Perfil | AxisMX</title>
+<link rel="stylesheet" href="./css/dashboard.css">
 </head>
 
 <body>
@@ -11,39 +11,40 @@
 <div class="layout">
 
     <aside class="sidebar">
-        <img src="/assets/logo2.png" alt="AxisMX logo" width="180" class="top-centered-image" onerror="this.style.display='none'">
+        <img src="/assets/logo2.png" alt="AxisMX logo" width="200" height="200" class="top-centered-image" onerror="this.style.display='none'">
         <h2 class="logo">AxisMX</h2>
+
         <nav>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="registro.html">Registros de Acceso</a>
-            <a href="usuarios.html">Usuarios</a>
-            <a href="roles.html">Roles</a>
-            <a href="tiposAcceso.html">Tipos de Acceso</a>
-            <a href="visitantes.html">Visitantes</a>
-            <a href="vehiculos.html">Vehículos</a>
-        </nav>
+               <a href="dashboard.html">Dashboard</a>
+               <a href="registro.html">Bitácora de Acceso</a>
+               <a href="usuarios.html">Usuarios</a>
+               <a href="roles.html">Roles</a>
+               <a href="visitantes.html">Visitantes</a>
+               <a href="vehiculos.html">Vehiculos</a>
+            </nav>
     </aside>
 
-<main class="main">
+    <main class="main">
 
-        <header class="header">
-            <h1>Mi Perfil</h1>
+            <header class="header">
+                <h1>Mi Perfil</h1>
+                <div class="header-actions">
+
+        <button class="btn small danger" onclick="logout()">
+            Cerrar sesión
+        </button>
+
+</div>
         </header>
 
         <section class="profile-grid">
 
             <div class="profile-card">
-
                 <img src="/assets/user.png" class="avatar-large">
 
                 <h2 id="name">Nombre</h2>
                 <span id="role" class="role-text"></span>
 
-                <div class="progress-box">
-                    <div class="progress-bar">
-                        <div class="progress" id="profileProgress"></div>
-                    </div>
-                </div>
 
                 <div class="quick-info">
                     <p><strong>Email:</strong> <span id="email"></span></p>
@@ -51,6 +52,9 @@
                     <p><strong>Empresa:</strong> <span id="company"></span></p>
                 </div>
 
+                <button class="btn" onclick="openPasswordModal()">
+                    Cambiar contraseña
+                </button>
             </div>
 
             <div class="profile-details">
@@ -91,7 +95,6 @@
                         <span>Teléfono</span>
                         <span id="phoneDetail"></span>
                     </div>
-
                 </div>
 
             </div>
@@ -99,9 +102,33 @@
         </section>
 
     </main>
+</div>
 
+<div id="passwordModal" class="modal">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h3>Cambiar contraseña</h3>
+            <span class="close" onclick="closePasswordModal()">✖</span>
+        </div>
+
+        <div class="modal-body">
+
+            <input type="password" id="currentPassword" placeholder="Contraseña actual">
+            <input type="password" id="newPassword" placeholder="Nueva contraseña">
+            <input type="password" id="confirmPassword" placeholder="Confirmar contraseña">
+
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn cancel" onclick="closePasswordModal()">Cancelar</button>
+            <button class="btn" onclick="changePassword()">Guardar</button>
+        </div>
+
+    </div>
 </div>
 
 <script src="/js/user.js"></script>
+
 </body>
 </html>

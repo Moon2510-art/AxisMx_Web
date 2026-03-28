@@ -1,111 +1,116 @@
 <!DOCTYPE html>
 <html lang="es">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Roles | AxisMX</title>
-      <link rel="stylesheet" href="./css/dashboard.css" />
-   </head>
-   <body>
-      <div class="layout">
-         <aside class="sidebar">
-            <img src="/assets/logo2.png" alt="AxisMX logo" width="200" height="200" class="top-centered-image" onerror="this.style.display='none'">
-            <h2 class="logo">AxisMX</h2>
-            <nav>
-               <a href="dashboard.html">Dashboard</a>
-               <a href="registro.html">Registros de Acceso</a>
-               <a href="usuarios.html">Usuarios</a>
-               <a class="active">Roles</a>
-               <a href="tiposAcceso.html">Tipos de Acceso</a>
-               <a href="visitantes.html">Visitantes</a>
-               <a href="vehiculos.html">Vehiculos</a>
-            </nav>
-         </aside>
-         <main class="main">
-            <header class="header">
-            <h1>Roles</h1>
-               <div class="user">
-                  <img src="/assets/user.jpg" width="50" height="50">
-                  <div>
-                     <strong>Test User</strong>
-                     <span>Admin</span>
-                  </div>
-               </div>
-            </header>
-            <section class="filter-bar">
-               <input type="text" placeholder="Buscar rol o descripción..." class="search">
-               <button class="btn">Buscar</button>
-               <button class="btn add">+ Nuevo Rol</button>
-            </section>
-            <section class="table-section">
-               <table>
-                  <thead>
-                     <tr>
-                        <th>ID</th>
-                        <th>Rol</th>
-                        <th>Descripción</th>
-                        <th>Acciones</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <tr>
-                        <td>1</td>
-                        <td>Alumno</td>
-                        <td>Alumno de la institución</td>
-                        <td class="actions">
-                           <button class="edit">Editar</button>
-                           <button class="delete">Eliminar</button>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td>2</td>
-                        <td>Maestro</td>
-                        <td>Docente de la institución</td>
-                        <td class="actions">
-                           <button class="edit">Editar</button>
-                           <button class="delete">Eliminar</button>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td>3</td>
-                        <td>Administrativo</td>
-                        <td>Personal encargado de procesos administrativos</td>
-                        <td class="actions">
-                           <button class="edit">Editar</button>
-                           <button class="delete">Eliminar</button>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td>4</td>
-                        <td>Seguridad</td>
-                        <td>Encargados de la seguridad institucional</td>
-                        <td class="actions">
-                           <button class="edit">Editar</button>
-                           <button class="delete">Eliminar</button>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td>5</td>
-                        <td>Visitante</td>
-                        <td>Visitante externo</td>
-                        <td class="actions">
-                           <button class="edit">Editar</button>
-                           <button class="delete">Eliminar</button>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td>6</td>
-                        <td>Empleado_Mantenimiento</td>
-                        <td>Personal de mantenimiento</td>
-                        <td class="actions">
-                           <button class="edit">Editar</button>
-                           <button class="delete">Eliminar</button>
-                        </td>
-                     </tr>
-                  </tbody>
-               </table>
-            </section>
-         </main>
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Roles | AxisMX</title>
+   <link rel="stylesheet" href="./css/dashboard.css" />
+</head>
+
+<body>
+
+<div class="layout">
+
+   <aside class="sidebar">
+      <img src="/assets/logo2.png" width="180" class="top-centered-image">
+      <h2 class="logo">AxisMX</h2>
+
+      <nav>
+         <a href="dashboard.html">Dashboard</a>
+         <a href="registro.html">Bitácora de Acceso</a>
+         <a href="usuarios.html">Usuarios</a>
+         <a class="active">Roles</a>
+         <a href="visitantes.html">Visitantes</a>
+         <a href="vehiculos.html">Vehiculos</a>
+      </nav>
+   </aside>
+
+   <main class="main">
+
+      <header class="header">
+         <h1>Roles</h1>
+
+         <div class="user" id="userCard">
+            <img src="/assets/user.png" width="40" height="40">
+            <div>
+               <strong id="userName">Admin</strong>
+               <span id="userRole">...</span>
+            </div>
+         </div>
+      </header>
+
+      <section class="filter-bar">
+
+         <input id="search"
+                type="text"
+                placeholder="Buscar rol o descripción..."
+                class="search">
+
+         <button class="btn add" onclick="openCreateModal()">
+            + Nuevo Rol
+         </button>
+
+      </section>
+
+      <section class="table-section">
+
+         <table>
+            <thead>
+               <tr>
+                  <th>ID</th>
+                  <th>Rol</th>
+                  <th>Descripción</th>
+                  <th>Acciones</th>
+               </tr>
+            </thead>
+
+            <tbody id="tableBody">
+               <tr>
+                  <td colspan="4">Cargando roles...</td>
+               </tr>
+            </tbody>
+
+         </table>
+
+      </section>
+
+   </main>
+
+</div>
+
+<div id="roleModal" class="modal">
+   <div class="modal-content">
+
+      <div class="modal-header">
+         <h3 id="modalTitle">Nuevo Rol</h3>
+         <span class="close" onclick="closeRoleModal()">✖</span>
       </div>
-   </body>
+
+      <div class="modal-body form-grid">
+
+         <input type="hidden" id="role_id">
+
+         <div class="form-group">
+            <label>Nombre del Rol</label>
+            <input id="rol_nombre" placeholder="Ej: Alumno">
+         </div>
+
+         <div class="form-group full">
+            <label>Descripción</label>
+            <input id="rol_desc" placeholder="Descripción del rol">
+         </div>
+
+         <div class="modal-footer">
+            <button class="btn cancel" onclick="closeModal()">Cancelar</button>
+            <button class="btn" onclick="saveRole()">Guardar</button>
+         </div>
+
+      </div>
+
+   </div>
+</div>
+
+<script src="/js/roles.js"></script>
+
+</body>
 </html>

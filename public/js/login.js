@@ -10,6 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     form?.addEventListener("submit", handleLogin);
 
+    const visitBtn = document.getElementById("visitBtn");
+
+    visitBtn?.addEventListener("click", () => {
+        window.location.href = "/visita.html";
+    });
+
     document.querySelectorAll(".input-field input").forEach(input => {
         const parent = input.parentElement;
 
