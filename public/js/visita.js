@@ -6,7 +6,6 @@ const estadoText = document.getElementById('estadoText');
 const statusMessage = document.getElementById('statusMessage');
 const qrContainer = document.getElementById('qrContainer');
 
-// Modal elements
 const statusBtn = document.getElementById('statusBtn');
 const statusModal = document.getElementById('statusModal');
 const closeModalBtn = document.getElementById('closeModalBtn');
@@ -66,9 +65,10 @@ async function handleSubmit(e) {
     const compania = document.getElementById('compania').value.trim();
     const email = document.getElementById('email').value.trim();
     const telefono = document.getElementById('telefono').value.trim();
+    const fecha = document.getElementById('fecha').value; // ✅ get fecha from input
 
-    if (!nombre || !email || !telefono) {
-        showMessage('Completa los campos requeridos', 'error');
+    if (!nombre || !email || !telefono || !fecha) {
+        showMessage('Completa todos los campos requeridos, incluyendo la fecha', 'error');
         return;
     }
 
@@ -85,7 +85,13 @@ async function handleSubmit(e) {
         const res = await fetch(API, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify({ Nombre: nombre, Compania: compania, Email: email, Telefono: telefono })
+            body: JSON.stringify({ 
+                Nombre: nombre, 
+                Compania: compania, 
+                Email: email, 
+                Telefono: telefono,
+                Fecha: fecha // ✅ include fecha
+            })
         });
 
         const data = await res.json();

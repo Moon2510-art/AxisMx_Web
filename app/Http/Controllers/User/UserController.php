@@ -56,7 +56,7 @@ public function show($id)
         ->leftJoin('Estados as e', 'u.ID_Estado', '=', 'e.ID_Estado')
         ->select(
             'u.ID_Usuario as id',
-            DB::raw("CONCAT(u.Nombre, ' ', u.Ap_Paterno) as name"),
+            DB::raw("CONCAT(u.Nombre, ' ', u.Ap_Paterno, ' ', IFNULL(u.Ap_Materno, '')) as name"),
             'u.Email as email',
             'u.Telefono as phone',
             'u.Matricula as matricula',
@@ -167,5 +167,42 @@ public function show($id)
             ->update(['ID_Estado' => 3]);
 
         return response()->json(['success' => true]);
+    }
+
+    public function storePublic(Request $request)
+    {
+        $request->validate([
+            'Nombre' => 'required',
+            'Ap_Paterno' => 'required',
+            'Email' => 'required|email|unique:Usuarios,Email',
+            'Contrasena' => 'required|min:6',
+            'ID_Rol' => 'required'
+        ]);
+
+        if (!$request->Matricula && !$request->Numero_Empleado) {
+            return response()->json([
+                'message' => 'Debes ingresar Matrícula o Número de Empleado'
+            ], 422);
+        }
+
+        $id = DB::table('Usuarios')->insertGetId([
+            'Nombre' => $request->Nombre,
+            'Ap_Paterno' => $request->Ap_Paterno,
+            'Ap_Materno' => $request->Ap_Materno,
+            'Email' => $request->Email,
+            'Telefono' => $request->Telefono,
+            'Numero_Empleado' => $request->Numero_Empleado,
+            'Matricula' => $request->Matricula,
+            'Empresa' => $request->Empresa,
+            'ID_Rol' => $request->ID_Rol,
+            'ID_Estado' => 3, // 3 = inactive/suspended by default
+            'Contrasena' => Hash::make($request->Contrasena)
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'id' => $id,
+            'message' => 'Cuenta creada correctamente. Un administrador deberá activarla.'
+        ]);
     }
 }

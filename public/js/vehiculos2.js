@@ -21,9 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.getElementById("userCard")?.addEventListener("click", () => {
-    const user = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(sessionStorage.getItem("user"));
     if (user?.id) {
-        window.location.href = `/user.html?id=${user.id}`;
+        window.location.href = `/user2.html?id=${user.id}`;
     }
 });
 
@@ -95,7 +95,6 @@ async function loadModelos() {
     }
 }
 
-// Load users for propietario select
 async function loadUsers() {
     try {
         const res = await fetch("/api/users", {
@@ -112,7 +111,6 @@ async function loadUsers() {
     }
 }
 
-// Open modal
 function openCreateModal() {
     document.getElementById("vehiculo_id").value = "";
     document.getElementById("placa").value = "";

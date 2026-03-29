@@ -1,5 +1,3 @@
-// public/js/visitantes.js
-
 document.addEventListener("DOMContentLoaded", () => {
   const tableBody = document.getElementById("visitantesTable");
   const searchInput = document.getElementById("search");
@@ -11,13 +9,21 @@ document.addEventListener("DOMContentLoaded", () => {
   let visitantes = [];
 
   function getAuthHeaders() {
-  const token = localStorage.getItem('api_token'); // asegúrate de guardarlo al loguear
+  const token = localStorage.getItem('api_token'); 
   return {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
     'Authorization': token ? `Bearer ${token}` : ''
   };
+
 }
+
+document.getElementById("userCard")?.addEventListener("click", () => {
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    if (user?.id) {
+        window.location.href = `/user.html?id=${user.id}`;
+    }
+});
 
 async function loadVisitantes() {
   showMessageRow("Cargando...");
@@ -40,22 +46,17 @@ async function loadVisitantes() {
   }
 }
 
-
-  // Normaliza la respuesta del API a un array
   function normalizeResponse(data) {
     if (Array.isArray(data)) return data;
     if (data && Array.isArray(data.data)) return data.data;
-    // Si es un objeto único (por ejemplo al crear), lo convertimos en array
     if (data && typeof data === "object" && Object.keys(data).length > 0) return [data];
     return [];
   }
 
-  // Mostrar mensaje en la tabla
   function showMessageRow(text) {
     tableBody.innerHTML = `<tr><td colspan="8">${text}</td></tr>`;
   }
 
-  // Cargar visitantes desde API
   async function loadVisitantes() {
     showMessageRow("Cargando...");
     try {
@@ -65,11 +66,10 @@ async function loadVisitantes() {
           "Accept": "application/json",
           "X-Requested-With": "XMLHttpRequest"
         },
-        credentials: "include" // importante para Sanctum cookie auth
+        credentials: "include" 
       });
 
       if (!res.ok) {
-        // intenta parsear JSON de error si existe
         let errText = `Error ${res.status}`;
         try {
           const errJson = await res.json();
@@ -89,7 +89,6 @@ async function loadVisitantes() {
     }
   }
 
-  // Renderizar tabla con filtros
   function renderTable() {
     if (!Array.isArray(visitantes) || visitantes.length === 0) {
       showMessageRow("Sin resultados");
@@ -102,7 +101,8 @@ async function loadVisitantes() {
     const filtered = visitantes.filter(v => {
       const nombre = (v.Nombre || "").toLowerCase();
       const compania = (v.Compania || "").toLowerCase();
-      const matchesSearch = nombre.includes(search) || compania.includes(search) || (v.Email || "").toLowerCase().includes(search);
+      const fecha = (v.Fecha || "").toLowerCase();
+      const matchesSearch = nombre.includes(search) || compania.includes(search) || (v.Email || "").toLowerCase().includes(search) || fecha.includes(search);
       const matchesEstado = estado ? v.Estado === estado : true;
       return matchesSearch && matchesEstado;
     });
@@ -125,6 +125,7 @@ async function loadVisitantes() {
           <td>${escapeHtml(v.Compania || "-")}</td>
           <td>${escapeHtml(v.Email)}</td>
           <td>${escapeHtml(v.Telefono)}</td>
+          <td>${escapeHtml(v.Fecha || "-")}</td>
           <td>${escapeHtml(v.Estado)}</td>
           <td>${qrCell}</td>
           <td>
@@ -135,7 +136,6 @@ async function loadVisitantes() {
       `;
     }).join("");
 
-    // Generar QR para los visibles
     filtered.forEach(v => {
       if (v.QR) {
         const qrDiv = document.getElementById(`qr-${v.ID_Visitante}`);
@@ -149,7 +149,6 @@ async function loadVisitantes() {
       }
     });
 
-    // Delegación de eventos para botones (más eficiente que inline onclick)
     tableBody.querySelectorAll(".btn-approve").forEach(btn => {
       btn.addEventListener("click", () => aprobar(btn.dataset.id));
     });
@@ -161,7 +160,6 @@ async function loadVisitantes() {
     });
   }
 
-  // Escape simple para evitar inyección en la tabla
   function escapeHtml(str) {
     if (!str && str !== 0) return "";
     return String(str)
@@ -172,7 +170,6 @@ async function loadVisitantes() {
       .replace(/'/g, "&#039;");
   }
 
-  // Petición POST para aprobar
   async function aprobar(id) {
     if (!confirm("¿Aprobar visitante?")) return;
     try {
@@ -189,7 +186,6 @@ async function loadVisitantes() {
     }
   }
 
-  // Petición POST para rechazar
   async function rechazar(id) {
     if (!confirm("¿Rechazar visitante?")) return;
     try {
@@ -206,7 +202,6 @@ async function loadVisitantes() {
     }
   }
 
-  // Petición DELETE para eliminar
   async function eliminar(id) {
     if (!confirm("¿Eliminar visitante? Esta acción no se puede deshacer.")) return;
     try {
@@ -226,13 +221,11 @@ async function loadVisitantes() {
     }
   }
 
-  // Exportar PDF
   btnPDF.addEventListener("click", () => {
     if (!pdfContent) return;
     html2pdf().from(pdfContent).save("visitantes.pdf");
   });
 
-  // Exportar Excel
   btnExcel.addEventListener("click", () => {
     if (!Array.isArray(visitantes) || visitantes.length === 0) {
       alert("No hay datos para exportar.");
@@ -244,6 +237,7 @@ async function loadVisitantes() {
       Compania: v.Compania || "",
       Email: v.Email,
       Telefono: v.Telefono,
+      Fecha: v.fecha || "",
       Estado: v.Estado,
       QR: v.QR || ""
     }));
@@ -253,10 +247,8 @@ async function loadVisitantes() {
     XLSX.writeFile(wb, "visitantes.xlsx");
   });
 
-  // Filtros
   searchInput.addEventListener("input", renderTable);
   estadoSelect.addEventListener("change", renderTable);
 
-  // Carga inicial
   loadVisitantes();
 });

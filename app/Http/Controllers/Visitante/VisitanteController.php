@@ -52,6 +52,7 @@ class VisitanteController extends Controller
             'Descripcion' => 'nullable|string',
             'Email' => 'required|email|max:150',
             'Telefono' => 'required|string|max:20',
+            'Fecha' => 'required|date', 
         ]);
 
         $data['Estado'] = 'Pendiente';

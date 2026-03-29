@@ -770,3 +770,55 @@ grid-column:span 2;
     box-shadow: 0 8px 18px rgba(0,0,0,0.2);
     background-color: #fc5956;
 }
+
+/* Action buttons in the table */
+.table-section button.btn-approve,
+.table-section button.btn-reject,
+.table-section button.btn-delete {
+    background: linear-gradient(135deg, #537d90, #779eb2);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Approve button */
+.btn-approve {
+    background-color: #4CAF50; /* green */
+    color: white;
+}
+
+.btn-approve:hover {
+    background-color: #45a049;
+}
+
+/* Reject button */
+.btn-reject {
+    background-color: #f44336; /* red */
+    color: white;
+}
+
+.btn-reject:hover {
+    background-color: #e53935;
+}
+
+/* Delete button */
+.btn-delete {
+    background-color: #777; /* gray */
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #555;
+}
+

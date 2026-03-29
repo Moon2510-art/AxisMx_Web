@@ -10,14 +10,12 @@
     use App\Http\Controllers\Vehiculo\VehiculoController;
     use App\Http\Controllers\Visitante\VisitanteController;
 
-
-
-    // ----------------- PUBLIC LOGIN -----------------
     Route::prefix('auth')->group(function () {
         Route::post('/login', [AuthController::class, 'login']);
     });
 
-    // ----------------- AUTHENTICATED ROUTES -----------------
+    Route::post('/users/public-create', [UserController::class, 'storePublic']);
+
     Route::middleware('auth:sanctum')->group(function () {
 
         // AUTH
@@ -53,15 +51,17 @@
 
         // VEHICULOS
         Route::apiResource('vehiculos', VehiculoController::class);
+
         Route::prefix('vehiculos')->group(function () {
             Route::post('/{id}/activate', [VehiculoController::class, 'activate']);
             Route::post('/{id}/suspend', [VehiculoController::class, 'suspend']);
         });
 
+        Route::get('usuarios/{id}/vehiculos', [VehiculoController::class, 'getByUsuario']);
+
         
     });
 
-    // ----------------- PUBLIC MODELOS -----------------
     Route::get('/modelos', function () {
         $modelos = DB::table('modelos as m')
             ->join('marcas as ma', 'm.ID_Marca', '=', 'ma.ID_Marca')
@@ -72,15 +72,12 @@
         return response()->json(['data' => $modelos]);
     });
 
-    // ADMIN VISITANTES
-        Route::prefix('visitantes')->group(function () {
-            Route::get('/', [VisitanteController::class, 'index']);
-            Route::post('/{id}/aprobar', [VisitanteController::class, 'aprobar']);
-            Route::post('/{id}/rechazar', [VisitanteController::class, 'rechazar']);
-            Route::delete('/{id}', [VisitanteController::class, 'destroy']);
-        });
-    // ----------------- PUBLIC VISITANTE -----------------
     Route::prefix('visitantes')->group(function () {
-        Route::post('/registrar', [VisitanteController::class, 'store']);
-        Route::get('/email/{email}', [VisitanteController::class, 'findByEmail']);
-    });
+        Route::get('/', [VisitanteController::class, 'index']); // List all
+        Route::post('/', [VisitanteController::class, 'store']); // Create new
+        Route::get('/email/{email}', [VisitanteController::class, 'findByEmail']); // Find by email
+        Route::delete('/{id}', [VisitanteController::class, 'destroy']); // Delete visitante
+
+        Route::post('/{id}/aprobar', [VisitanteController::class, 'aprobar']);
+        Route::post('/{id}/rechazar', [VisitanteController::class, 'rechazar']);
+});

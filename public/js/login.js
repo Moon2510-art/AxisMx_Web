@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const $ = (id) => document.getElementById(id);
 
     const form = $("loginForm");
-    const loginBtn = $("loginBtn");
 
     if ($("year")) $("year").textContent = new Date().getFullYear();
 
@@ -11,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
     form?.addEventListener("submit", handleLogin);
 
     const visitBtn = document.getElementById("visitBtn");
-
     visitBtn?.addEventListener("click", () => {
         window.location.href = "/visita.html";
     });
@@ -20,7 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const parent = input.parentElement;
 
         const toggle = () => {
-            parent.classList.toggle("focused", !!input.value || document.activeElement === input);
+            parent.classList.toggle(
+                "focused",
+                !!input.value || document.activeElement === input
+            );
         };
 
         input.addEventListener("focus", toggle);
@@ -52,7 +53,8 @@ async function handleLogin(e) {
     const remember = $("remember")?.checked;
 
     if (!email) return showMessage(container, "Ingresa tu usuario", "error");
-    if (!password || password.length < 6) return showMessage(container, "Contraseña inválida", "error");
+    if (!password || password.length < 6)
+        return showMessage(container, "Contraseña inválida", "error");
 
     btn.disabled = true;
     if (btnText) btnText.style.display = "none";
@@ -82,8 +84,10 @@ async function handleLogin(e) {
 
         const storage = remember ? localStorage : sessionStorage;
 
+        const user = data.data?.user || {};
+
         storage.setItem("auth_token", data.data?.token || "");
-        storage.setItem("user", JSON.stringify(data.data?.user || {}));
+        storage.setItem("user", JSON.stringify(user));
 
         remember
             ? localStorage.setItem("remembered_user", email)
@@ -91,7 +95,11 @@ async function handleLogin(e) {
 
         showMessage(container, "Login exitoso", "success");
 
-        setTimeout(() => location.href = "/dashboard.html", 1200);
+        const redirectUrl = user.is_admin
+            ? "/dashboard.html"
+            : "/dashboard2.html";
+
+        setTimeout(() => location.href = redirectUrl, 1200);
 
     } catch (err) {
         let msg = err.message || "Error";
@@ -130,22 +138,40 @@ async function logout() {
             });
         } catch {}
     }
-    
+
     sessionStorage.clear();
     localStorage.removeItem("auth_token");
     localStorage.removeItem("user");
-    localStorage.removeItem("remembered_user"); 
+    localStorage.removeItem("remembered_user");
+
     location.href = "/login.html";
 }
 
 function checkAuth() {
-    const token = sessionStorage.getItem("auth_token");
-    const page = location.pathname.split("/").pop();
+    const token =
+        sessionStorage.getItem("auth_token") ||
+        localStorage.getItem("auth_token");
 
+    const userStr =
+        sessionStorage.getItem("user") ||
+        localStorage.getItem("user");
+
+    const page = location.pathname.split("/").pop();
     const isAuthPage = ["login.html", "index.html", ""].includes(page);
 
-    if (token && isAuthPage) location.href = "/dashboard.html";
-    if (!token && !isAuthPage) location.href = "/login.html";
+    if (token && userStr) {
+        const user = JSON.parse(userStr);
+
+        const redirectUrl = user.is_admin
+            ? "/dashboard.html"
+            : "/dashboard2.html";
+
+        if (isAuthPage) location.href = redirectUrl;
+    }
+
+    if (!token && !isAuthPage) {
+        location.href = "/login.html";
+    }
 }
 
 function togglePassword() {
@@ -156,6 +182,7 @@ function togglePassword() {
 
     const isHidden = input.type === "password";
     input.type = isHidden ? "text" : "password";
+
     icon.classList.toggle("fa-eye", !isHidden);
     icon.classList.toggle("fa-eye-slash", isHidden);
 }

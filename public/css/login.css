@@ -677,3 +677,152 @@ body {
     transform:translateY(-1px);
     box-shadow:0 4px 10px rgba(59,130,246,.2);
 }
+
+/* Slim Account Wrapper */
+.account-wrapper {
+    max-width: 450px;         /* Slim width */
+    width: 100%;
+    max-height: 90vh;         /* Limit overall height */
+    margin: auto;
+    border-radius: 1.5rem;
+    background: rgba(255,255,255,0.95);
+    box-shadow: var(--shadow-xl);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.5s ease-out;
+}
+
+/* Right side scrollable */
+.account-right {
+    padding: 2rem;
+    overflow-y: auto;
+    max-height: 80vh;         /* Scrollable form */
+}
+
+/* Inner card adjustments */
+.account-card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Optional: make button stand out */
+.account-btn {
+    background: var(--gradient-accent);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.account-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Input groups remain same but scoped to account form */
+.account-form .input-group {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.account-form .input-icon {
+    width: 45px;
+    height: 45px;
+    background: var(--bg-gray);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-blue);
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.account-form .input-field input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--border-light);
+    border-radius: 0.75rem;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.account-form .input-field input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+}
+
+/* Center the register button and give spacing */
+.account-form .account-btn {
+    display: block;           /* Make it a block for centering */
+    margin: 2rem auto 0 auto; /* Top margin for spacing, centered horizontally */
+    width: 60%;               /* Optional: make the button slightly narrower than full width */
+    text-align: center;
+}
+
+/* Add more space between input fields */
+.account-form .input-group {
+    margin-bottom: 1.5rem; /* Increase spacing between each input */
+}
+/* Make label sit to the left of the icon */
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* spacing between label, icon, and field */
+}
+
+.input-label-left {
+    min-width: 60px;          /* fixed width for left label */
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+/* Keep icon and dropdown consistent */
+.input-field select {
+    width: 180px;              /* narrower dropdown */
+    padding: 0.75rem;
+    font-size: 0.95rem;
+    border: 2px solid var(--border-light);
+    border-radius: 0.75rem;
+    background-color: var(--bg-white);
+    color: var(--text-dark);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    padding-right: 2.5rem;     /* space for arrow */
+}
+
+/* Custom arrow for select */
+.input-field select {
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='12' height='12' viewBox='0 0 12 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%2364788b' stroke-width='2' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px 12px;
+}
+
+/* Hover/focus effects */
+.input-field select:hover {
+    border-color: var(--accent-blue);
+}
+
+.input-field select:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+    outline: none;
+}

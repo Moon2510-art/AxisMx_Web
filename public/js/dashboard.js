@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.getElementById("userCard")?.addEventListener("click", () => {
-    const user = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(sessionStorage.getItem("user"));
 
     if (user?.id) {
         window.location.href = `/user.html?id=${user.id}`;
